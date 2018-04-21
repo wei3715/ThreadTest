@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信", nil];
+    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法", nil];
     
 }
 
@@ -83,7 +83,6 @@
 //            [self testMainQueueAysn];
             
             //全局队列
-            
                 [self testGlobalQueueASyn];
             //    [self testGlobalQueueSyn];
             break;
@@ -92,6 +91,14 @@
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             FirstViewController *firstVC = [story instantiateViewControllerWithIdentifier:@"FirstViewController"];
             [self.navigationController pushViewController:firstVC animated:YES];
+            break;
+        }
+        case 7:{
+//            [self useGCD1];
+//            [self useGCD1];
+//            [self useGCD1];
+//            [self useGCD2];
+            [self useGCD3];
             break;
         }
         default:

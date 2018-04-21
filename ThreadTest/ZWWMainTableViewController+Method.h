@@ -52,4 +52,13 @@
 //7.测试系统队列
 - (void)testGCDQueue;
 
+//8.GCD的常用方法
+//8.1使用GCD场景1
+- (void)useGCD1;
+
+//8.2使用GCD场景2
+- (void)useGCD2;
+
+//8.3使用GCD场景3
+- (void)useGCD3;
 @end

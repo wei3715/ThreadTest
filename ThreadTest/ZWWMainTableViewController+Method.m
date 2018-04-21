@@ -364,4 +364,91 @@ static int count = 100;
     NSLog(@"当前线程end==%@",[NSThread currentThread]);
 }
 
+//8.1使用GCD场景1
+- (void)useGCD1{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSLog(@"使用GCD创建单例");
+    });
+}
+
+//8.2使用GCD场景1
+- (void)useGCD2{
+    NSLog(@"任务开始,当前线程==%@",[NSThread currentThread]);
+//    [self performSelector:@selector(handleThread) withObject:nil afterDelay:2];
+    
+    //DISPATCH_TIME_NOW  立即开始
+    //DISPATCH_TIME_FOREVER 永远
+    //NSEC_PER_SEC 秒
+    //NSEC_PER_MSEC 毫秒
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2* NSEC_PER_SEC));
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        NSLog(@"延迟后打印任务");
+    });
+}
+
+//8.3使用GCD场景3
+- (void)useGCD3{
+    
+    //创建一个调度组
+    dispatch_group_t group = dispatch_group_create();
+    
+    //获取全局队列
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    
+    //调度组使用情况1
+//    dispatch_group_async(group, queue, ^{
+//        [NSThread sleepForTimeInterval:2.0];
+//        NSLog(@"下载图片1,当前线程==%@",[NSThread currentThread]);
+//    });
+//
+//    dispatch_group_async(group, queue, ^{
+//        [NSThread sleepForTimeInterval:1.0];
+//        NSLog(@"下载图片2,当前线程==%@",[NSThread currentThread]);
+//    });
+//
+//    dispatch_group_async(group, queue, ^{
+//        [NSThread sleepForTimeInterval:3.0];
+//        NSLog(@"下载图片3,当前线程==%@",[NSThread currentThread]);
+//    });
+//
+//    //notify通知，所有异步请求完毕后会通知
+//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        NSLog(@"下载完毕更新UI,当前线程==%@",[NSThread currentThread]);
+//    });
+    
+    //调度组使用情况2
+    //进入队列
+    dispatch_group_enter(group);
+    dispatch_group_async(group, queue, ^{
+        [NSThread sleepForTimeInterval:2.0];
+        NSLog(@"下载图片1,当前线程==%@",[NSThread currentThread]);
+        //离开队列
+        dispatch_group_leave(group);
+    });
+    
+    //进入队列
+    dispatch_group_enter(group);
+    dispatch_group_async(group, queue, ^{
+        [NSThread sleepForTimeInterval:1.0];
+        NSLog(@"下载图片2,当前线程==%@",[NSThread currentThread]);
+        //离开队列
+        dispatch_group_leave(group);
+    });
+    
+    //进入队列
+    dispatch_group_enter(group);
+    dispatch_group_async(group, queue, ^{
+        [NSThread sleepForTimeInterval:3.0];
+        NSLog(@"下载图片3,当前线程==%@",[NSThread currentThread]);
+        //离开队列
+        dispatch_group_leave(group);
+    });
+    
+    //wait 相当于阻塞
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"下载完毕更新UI,当前线程==%@",[NSThread currentThread]);
+    
+}
+
 @end

@@ -15,14 +15,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+   
     
 }
 
-//1.测试耗时操作阻塞主线程
+//1.测试耗时操作阻塞主线程：打印数字期间，UI主线程中的switch button和UITextView都无法点击
 - (IBAction)testBlockThread:(id)sender {
-   
-    //打印数字期间，UI主线程中的switch button和UITextView都无法点击
      [self testThread];
 }
 
@@ -66,7 +64,7 @@
 
 
 
-//方法实现
+#pragma 方法实现
 //1.测试耗时操作阻塞主线程
 - (void)testThread{
     int sum = 0;
@@ -99,6 +97,9 @@
         });
     });
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

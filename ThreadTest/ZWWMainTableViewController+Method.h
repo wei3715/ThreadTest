@@ -61,4 +61,27 @@
 
 //8.3使用GCD场景3
 - (void)useGCD3;
+
+//9.中断
+- (void)barrierGCD;
+
+//NSOperation
+//1.NSInvocation
+- (void)testNSOperation1;
+
+//2.NSBlockOperation
+- (void)testNSOperation2;
+
+//3.NSOperationQueue
+- (void)testNSOperation3;
+
+//4.最大并发数
+- (void)testNSOperation4;
+
+//5.依赖关系
+- (void)testNSOperation5;
+
+//6.挂起
+- (void)testNSOperationSuspend;
+
 @end

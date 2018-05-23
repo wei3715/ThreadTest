@@ -1,15 +1,13 @@
 //
-//  ZWWMainTableViewController.h
+//  ZWWSuspendCell.h
 //  ThreadTest
 //
-//  Created by mac on 2018/4/16.
+//  Created by mac on 2018/5/12.
 //  Copyright © 2018年 mac. All rights reserved.
-//  test reset 命令
+//
 
 #import <UIKit/UIKit.h>
 
-@interface ZWWMainTableViewController : UITableViewController
-
+@interface ZWWSuspendCell : UITableViewCell
 @property (nonatomic, strong) NSOperationQueue *opQueue;
-
 @end

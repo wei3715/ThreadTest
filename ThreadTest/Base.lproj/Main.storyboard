@@ -40,22 +40,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugd-9U-ieG">
-                                <rect key="frame" x="137" y="489" width="66" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="GCD使用"/>
-                                <connections>
-                                    <action selector="GCDTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tU5-Jr-U7j"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oav-dX-SaW">
-                                <rect key="frame" x="16" y="555" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="测试多线程"/>
-                                <connections>
-                                    <action selector="testMoreThreads:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hZT-5G-TF5"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJU-VH-D05">
                                 <rect key="frame" x="126" y="555" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,9 +57,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y52-aR-veS">
-                                <rect key="frame" x="7" y="489" width="116" height="38"/>
+                                <rect key="frame" x="7" y="489" width="122" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="测试阻塞主线程"/>
+                                <state key="normal" title="1.测试阻塞主线程"/>
                                 <connections>
                                     <action selector="testBlockThread:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fvE-fe-I0j"/>
                                 </connections>
@@ -107,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2020" y="574"/>
+            <point key="canvasLocation" x="2020" y="573.46326836581716"/>
         </scene>
         <!--主页-->
         <scene sceneID="gjh-z9-XsX">

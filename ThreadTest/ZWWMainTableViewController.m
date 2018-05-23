@@ -9,6 +9,7 @@
 #import "ZWWMainTableViewController.h"
 #import "ZWWMainTableViewController+Method.h"
 #import "FirstViewController.h"
+#import "ZWWSuspendCell.h"
 @interface ZWWMainTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
@@ -20,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法", nil];
+    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法",@"中断",@"NSOperation",@"挂起", nil];
+    
     
 }
 
@@ -41,10 +43,17 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"firstCell" forIndexPath:indexPath];
-    cell.textLabel.text = _dataArr[indexPath.row];
-    
-    // Configure the cell...
+    UITableViewCell *cell = nil;
+    if (indexPath.row == 10) {
+        cell = (ZWWSuspendCell *)[tableView dequeueReusableCellWithIdentifier:@"ZWWSuspendCell"];
+        if (cell == nil) {
+            cell= (ZWWSuspendCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"ZWWSuspendCell" owner:self options:nil]  lastObject];
+            cell.opaque = self.opQueue;
+        }
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"firstCell" forIndexPath:indexPath];
+        cell.textLabel.text = _dataArr[indexPath.row];
+    }
     
     return cell;
 }
@@ -101,12 +110,40 @@
             [self useGCD3];
             break;
         }
+        case 8:{
+            [self barrierGCD];
+            break;
+        }
+        case 9:{
+//            [self testNSOperation1];
+//            [self testNSOperation2];
+//            [self testNSOperation3];
+//            [self testNSOperation4];
+            [self testNSOperation5];
+            break;
+        }
+        case 10:{//挂起
+            [self testNSOperationSuspend];
+            break;
+        }
         default:
             break;
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 10) {
+        return 100;
+    }
+    return 44;
+}
 
+- (NSOperationQueue *)opQueue{
+    if (!_opQueue) {
+        _opQueue = [[NSOperationQueue alloc]init];
+    }
+    return _opQueue;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04002330207DD42700B1598E /* ZWWMainTableViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 0400232F207DD42700B1598E /* ZWWMainTableViewController+Method.m */; };
+		04BF21D420A6BB01009066B0 /* ZWWBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF21D320A6BB01009066B0 /* ZWWBaseCell.m */; };
+		04BF21E220A6BD56009066B0 /* ZWWSuspendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF21E020A6BD56009066B0 /* ZWWSuspendCell.m */; };
+		04BF21E320A6BD56009066B0 /* ZWWSuspendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BF21E120A6BD56009066B0 /* ZWWSuspendCell.xib */; };
 		04E740832084459400D3EA47 /* ZWWMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E740822084459400D3EA47 /* ZWWMainTableViewController.m */; };
 		04F9A8572079DF8F0096D494 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9A8562079DF8F0096D494 /* AppDelegate.m */; };
 		04F9A85A2079DF8F0096D494 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9A8592079DF8F0096D494 /* FirstViewController.m */; };
@@ -39,6 +42,11 @@
 /* Begin PBXFileReference section */
 		0400232E207DD42700B1598E /* ZWWMainTableViewController+Method.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZWWMainTableViewController+Method.h"; sourceTree = "<group>"; };
 		0400232F207DD42700B1598E /* ZWWMainTableViewController+Method.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ZWWMainTableViewController+Method.m"; sourceTree = "<group>"; };
+		04BF21D220A6BB01009066B0 /* ZWWBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWBaseCell.h; sourceTree = "<group>"; };
+		04BF21D320A6BB01009066B0 /* ZWWBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWBaseCell.m; sourceTree = "<group>"; };
+		04BF21DF20A6BD56009066B0 /* ZWWSuspendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWSuspendCell.h; sourceTree = "<group>"; };
+		04BF21E020A6BD56009066B0 /* ZWWSuspendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWSuspendCell.m; sourceTree = "<group>"; };
+		04BF21E120A6BD56009066B0 /* ZWWSuspendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZWWSuspendCell.xib; sourceTree = "<group>"; };
 		04E740812084459400D3EA47 /* ZWWMainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWMainTableViewController.h; sourceTree = "<group>"; };
 		04E740822084459400D3EA47 /* ZWWMainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWMainTableViewController.m; sourceTree = "<group>"; };
 		04F9A8522079DF8F0096D494 /* ThreadTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +123,11 @@
 				04E740822084459400D3EA47 /* ZWWMainTableViewController.m */,
 				0400232E207DD42700B1598E /* ZWWMainTableViewController+Method.h */,
 				0400232F207DD42700B1598E /* ZWWMainTableViewController+Method.m */,
+				04BF21D220A6BB01009066B0 /* ZWWBaseCell.h */,
+				04BF21D320A6BB01009066B0 /* ZWWBaseCell.m */,
+				04BF21DF20A6BD56009066B0 /* ZWWSuspendCell.h */,
+				04BF21E020A6BD56009066B0 /* ZWWSuspendCell.m */,
+				04BF21E120A6BD56009066B0 /* ZWWSuspendCell.xib */,
 				04F9A85B2079DF8F0096D494 /* Main.storyboard */,
 				04F9A85E2079DF900096D494 /* Assets.xcassets */,
 				04F9A8602079DF900096D494 /* LaunchScreen.storyboard */,
@@ -247,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F9A8622079DF900096D494 /* LaunchScreen.storyboard in Resources */,
+				04BF21E320A6BD56009066B0 /* ZWWSuspendCell.xib in Resources */,
 				04F9A85F2079DF900096D494 /* Assets.xcassets in Resources */,
 				04F9A85D2079DF8F0096D494 /* Main.storyboard in Resources */,
 			);
@@ -273,7 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BF21E220A6BD56009066B0 /* ZWWSuspendCell.m in Sources */,
 				04F9A85A2079DF8F0096D494 /* FirstViewController.m in Sources */,
+				04BF21D420A6BB01009066B0 /* ZWWBaseCell.m in Sources */,
 				04002330207DD42700B1598E /* ZWWMainTableViewController+Method.m in Sources */,
 				04F9A8652079DF900096D494 /* main.m in Sources */,
 				04F9A8572079DF8F0096D494 /* AppDelegate.m in Sources */,

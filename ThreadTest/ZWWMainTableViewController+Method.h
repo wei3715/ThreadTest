@@ -81,7 +81,5 @@
 //5.依赖关系
 - (void)testNSOperation5;
 
-//6.挂起
-- (void)testNSOperationSuspend;
 
 @end

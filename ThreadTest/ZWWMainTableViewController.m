@@ -9,7 +9,8 @@
 #import "ZWWMainTableViewController.h"
 #import "ZWWMainTableViewController+Method.h"
 #import "FirstViewController.h"
-#import "ZWWSuspendCell.h"
+#import "ZWWTestSuspendViewController.h"
+#import "ZWWUseNSOperationViewController.h"
 @interface ZWWMainTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法",@"中断",@"NSOperation",@"挂起", nil];
+    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法",@"中断",@"NSOperation",@"挂起", @"练习NSOperation使用", nil];
     
     
 }
@@ -43,99 +44,86 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
-    if (indexPath.row == 10) {
-        cell = (ZWWSuspendCell *)[tableView dequeueReusableCellWithIdentifier:@"ZWWSuspendCell"];
-        if (cell == nil) {
-            cell= (ZWWSuspendCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"ZWWSuspendCell" owner:self options:nil]  lastObject];
-            cell.opaque = self.opQueue;
-        }
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"firstCell" forIndexPath:indexPath];
-        cell.textLabel.text = _dataArr[indexPath.row];
-    }
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"firstCell" forIndexPath:indexPath];
+    cell.textLabel.text = _dataArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 0:{
+        case 0:{//@"测试耗时操作阻塞主线程"
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             FirstViewController *firstVC = [story instantiateViewControllerWithIdentifier:@"FirstViewController"];
             [self.navigationController pushViewController:firstVC animated:YES];            
             break;
         }
-        case 1:{
+        case 1:{//@"测试多线程"
             [self testMoreThreads];
             break;
         }
-        case 2:{
+        case 2:{//@"测试创建多线程的多种方法"
             [self testCreateThreadMethod];
             break;
         }
-        case 3:{
+        case 3:{//@"测试同步锁问题"
             [self testSellTicket];
             break;
         }
-        case 4:{
-            [self GCDSerialSyn];
-            [self GCDSerialAsyn];
-            [self GCDConcurrentSyn];
-            [self GCDConcurrentAsyn];
+        case 4:{//@"GCD使用（多种组合）
+            [self GCDSerialSyn];        //串行+同步
+            [self GCDSerialAsyn];       //串行+异步
+            [self GCDConcurrentSyn];    //并行+同步
+            [self GCDConcurrentAsyn];   //并行+异步
             break;
         }
-        case 5:{
+        case 5:{//测试系统队列（主队列，全局队列）
         
             //主队列
-//            [self testMainQueueSyn];
-//            [self testMainQueueAysn];
+//            [self testMainQueueSyn];  //主队列+同步
+//            [self testMainQueueAysn]; //主队列+异步
             
             //全局队列
-                [self testGlobalQueueASyn];
-            //    [self testGlobalQueueSyn];
+                [self testGlobalQueueASyn];     //全局队列+同步
+            //    [self testGlobalQueueSyn];    //全局队列+异步
             break;
         }
-        case 6:{
+        case 6:{//@"测试线程间通信"
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             FirstViewController *firstVC = [story instantiateViewControllerWithIdentifier:@"FirstViewController"];
             [self.navigationController pushViewController:firstVC animated:YES];
             break;
         }
-        case 7:{
-//            [self useGCD1];
-//            [self useGCD1];
-//            [self useGCD1];
-//            [self useGCD2];
-            [self useGCD3];
+        case 7:{//@"GCD的常见用法"
+//            [self useGCD1];         //单例
+//            [self useGCD2];         //回主线程刷新UI
+            [self useGCD3];           //通过调度组回主线程刷新UI
             break;
         }
-        case 8:{
+        case 8:{//@"中断"
             [self barrierGCD];
             break;
         }
-        case 9:{
-//            [self testNSOperation1];
-//            [self testNSOperation2];
-//            [self testNSOperation3];
-//            [self testNSOperation4];
-            [self testNSOperation5];
+        case 9:{//@"NSOperation"
+//            [self testNSOperation1];         //NSInvocationOperation
+//            [self testNSOperation2];         //NSBlockOperation
+//            [self testNSOperation3];         //NSOperationQueue
+//            [self testNSOperation4];         //maxConcurrentOperationCount:最大并发数
+            [self testNSOperation5];           //依赖关系
             break;
         }
         case 10:{//挂起
-            [self testNSOperationSuspend];
+            ZWWTestSuspendViewController *testSuspendVC = [[ZWWTestSuspendViewController alloc]init];
+            [self.navigationController pushViewController:testSuspendVC animated:YES];
+            break;
+        }
+        case 11:{// @"练习NSOperation使用"
+            ZWWUseNSOperationViewController *useNSOperationVC = [[ZWWUseNSOperationViewController alloc]init];
+            [self.navigationController pushViewController:useNSOperationVC animated:YES];
             break;
         }
         default:
             break;
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 10) {
-        return 100;
-    }
-    return 44;
 }
 
 - (NSOperationQueue *)opQueue{
@@ -144,48 +132,6 @@
     }
     return _opQueue;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

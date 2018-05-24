@@ -568,7 +568,7 @@ static int count = 100;
 - (void)testNSOperation4{
     //设置最大并发量，设置之后会两个两个一起来打印，不设置的话10个循环几乎同一时间并发打印
     //情况类似于 百度网盘同时勾选两个文件夹下载（可以把网速集中到某两个文件夹的下载上），不设置并发数的话，会多个线程共同并发执行，多个文件没有重要性区分
-//    self.opQueue.maxConcurrentOperationCount = 2;
+    self.opQueue.maxConcurrentOperationCount = 2;
     for (int i = 0; i<10; i++) {
         NSInvocationOperation *invoOP = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(downImage) object:nil];
         [self.opQueue addOperation:invoOP];
@@ -598,12 +598,5 @@ static int count = 100;
     [self.opQueue addOperations:@[invoOP1,blockOP2,blockOP3,blockOP4] waitUntilFinished:YES];
 }
 
-//6.挂起
-- (void)testNSOperationSuspend{
-    //10个下载任务
-    for (int i = 0; i<10; i++) {
-        NSInvocationOperation *invoOP = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(downImage) object:nil];
-        [self.opQueue addOperation:invoOP];
-    }
-}
+
 @end

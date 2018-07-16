@@ -15,8 +15,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    
 }
 
 //1.测试耗时操作阻塞主线程：打印数字期间，UI主线程中的switch button和UITextView都无法点击
@@ -78,7 +76,7 @@
 - (void)testDownImg{
     NSLog(@"当前线程==%@",[NSThread currentThread]);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{//在一个新的并发队列中异步下载图片
-        NSLog(@"开始下载图片");
+        NSLog(@"开始下载图片，所在线程==%@",[NSThread currentThread]);
         NSURL *imagURL1 = [NSURL URLWithString:@"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2753165990,2892529492&fm=200&gp=0.jpg"];
         NSData *imgData1 = [NSData dataWithContentsOfURL:imagURL1];
         UIImage *image1 = [UIImage imageWithData:imgData1];
@@ -91,7 +89,7 @@
         [NSThread sleepForTimeInterval:10];
 
         dispatch_async(dispatch_get_main_queue(), ^{//
-            NSLog(@"回到主线程");
+            NSLog(@"回到主线程,所在线程==%@",[NSThread currentThread]);
             [self.showIV setImage:image1];
             [self.showIV2 setImage:image2];
         });

@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataArr = [[NSMutableArray alloc]initWithObjects:@"测试耗时操作阻塞主线程",@"测试多线程",@"测试创建多线程的多种方法",@"测试同步锁问题",@"GCD使用（多种组合）",@"测试系统队列（主队列，全局队列）",@"测试线程间通信",@"GCD的常见用法",@"中断",@"NSOperation",@"挂起", @"练习NSOperation使用", nil];
+    _dataArr = [[NSMutableArray alloc]initWithObjects:@"0.测试耗时操作阻塞主线程",@"1.测试NSThread多线程",@"2.测试创建多线程的多种方法",@"3.测试同步锁问题",@"4.GCD使用（多种组合）",@"5.测试系统队列（主队列，全局队列）",@"6.测试线程间通信",@"7.GCD的常见用法",@"8.中断",@"9.NSOperation",@"10.挂起", @"11.练习NSOperation使用", nil];
     
     
 }
@@ -70,10 +70,10 @@
             break;
         }
         case 4:{//@"GCD使用（多种组合）
-            [self GCDSerialSyn];        //串行+同步
-            [self GCDSerialAsyn];       //串行+异步
-            [self GCDConcurrentSyn];    //并行+同步
-            [self GCDConcurrentAsyn];   //并行+异步
+            [self GCDSerialSyn];        //同步+串行
+//            [self GCDSerialAsyn];       //异步+串行
+//            [self GCDConcurrentSyn];    //同步+并行
+//            [self GCDConcurrentAsyn];   //异步+并行
             break;
         }
         case 5:{//测试系统队列（主队列，全局队列）

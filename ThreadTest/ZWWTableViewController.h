@@ -1,5 +1,5 @@
 //
-//  ZWWMainTableViewController.h
+//  ZWWTableViewController.h
 //  ThreadTest
 //
 //  Created by mac on 2018/4/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZWWMainTableViewController : UITableViewController
+@interface ZWWTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSOperationQueue *opQueue;
 

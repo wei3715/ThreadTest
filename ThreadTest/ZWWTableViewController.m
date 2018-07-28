@@ -1,23 +1,24 @@
 //
-//  ZWWMainTableViewController.m
+//  ZWWTableViewController.m
 //  ThreadTest
 //
 //  Created by mac on 2018/4/16.
 //  Copyright © 2018年 mac. All rights reserved.
 //
 
-#import "ZWWMainTableViewController.h"
-#import "ZWWMainTableViewController+Method.h"
+#import "ZWWTableViewController.h"
+#import "ZWWTableViewController+Method.h"
 #import "FirstViewController.h"
+#import "ZWWGCDGroupViewController.h"
 #import "ZWWTestSuspendViewController.h"
 #import "ZWWUseNSOperationViewController.h"
-@interface ZWWMainTableViewController ()
+@interface ZWWTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end
 
-@implementation ZWWMainTableViewController
+@implementation ZWWTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,7 +58,7 @@
             [self.navigationController pushViewController:firstVC animated:YES];            
             break;
         }
-        case 1:{//@"测试多线程"
+        case 1:{//@"1.测试NSThread多线程"
             [self testMoreThreads];
             break;
         }
@@ -70,7 +71,9 @@
             break;
         }
         case 4:{//@"GCD使用（多种组合）
-            [self GCDSerialSyn];        //同步+串行
+            ZWWGCDGroupViewController *GCDGroupVC = [[ZWWGCDGroupViewController alloc]init];
+            [self.navigationController pushViewController:GCDGroupVC animated:YES];
+//            [self GCDSerialSyn];        //同步+串行
 //            [self GCDSerialAsyn];       //异步+串行
 //            [self GCDConcurrentSyn];    //同步+并行
 //            [self GCDConcurrentAsyn];   //异步+并行
@@ -96,7 +99,8 @@
         case 7:{//@"GCD的常见用法"
 //            [self useGCD1];         //单例
 //            [self useGCD2];         //回主线程刷新UI
-            [self useGCD3];           //通过调度组回主线程刷新UI
+//            [self useGCD3];           //通过调度组回主线程刷新UI
+            [self useGCD4];
             break;
         }
         case 8:{//@"中断"

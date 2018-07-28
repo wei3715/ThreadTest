@@ -37,7 +37,7 @@
 
 //加载图片-耗时操作
 - (void)loadImag{
-    NSLog(@"当前线程==%@",[NSThread currentThread]);
+    ZWWLog(@"当前线程==%@",[NSThread currentThread]);
     
     NSURL *imagURL1 = [NSURL URLWithString:@"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2753165990,2892529492&fm=200&gp=0.jpg"];
     NSData *imgData1 = [NSData dataWithContentsOfURL:imagURL1];
@@ -68,15 +68,15 @@
     int sum = 0;
     for (int i = 0; i<50000; i++) {
         sum+=i;
-        NSLog(@"sum==%d",i);
+        ZWWLog(@"sum==%d",i);
     }
 }
 
 //7.测试线程间通信
 - (void)testDownImg{
-    NSLog(@"当前线程==%@",[NSThread currentThread]);
+    ZWWLog(@"当前线程==%@",[NSThread currentThread]);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{//在一个新的并发队列中异步下载图片
-        NSLog(@"开始下载图片，所在线程==%@",[NSThread currentThread]);
+        ZWWLog(@"开始下载图片，所在线程==%@",[NSThread currentThread]);
         NSURL *imagURL1 = [NSURL URLWithString:@"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2753165990,2892529492&fm=200&gp=0.jpg"];
         NSData *imgData1 = [NSData dataWithContentsOfURL:imagURL1];
         UIImage *image1 = [UIImage imageWithData:imgData1];
@@ -89,7 +89,7 @@
         [NSThread sleepForTimeInterval:10];
 
         dispatch_async(dispatch_get_main_queue(), ^{//
-            NSLog(@"回到主线程,所在线程==%@",[NSThread currentThread]);
+            ZWWLog(@"回到主线程,所在线程==%@",[NSThread currentThread]);
             [self.showIV setImage:image1];
             [self.showIV2 setImage:image2];
         });

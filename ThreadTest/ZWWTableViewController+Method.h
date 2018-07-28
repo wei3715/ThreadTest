@@ -6,9 +6,9 @@
 //  Copyright © 2018年 mac. All rights reserved.
 //
 
-#import "ZWWMainTableViewController.h"
+#import "ZWWTableViewController.h"
 
-@interface ZWWMainTableViewController (Method)
+@interface ZWWTableViewController (Method)
 
 //2.简单测试多线程场景
 - (void)testMoreThreads;
@@ -19,22 +19,22 @@
 //4.买票系统，模拟多个线程同时访问同一个资源
 - (void)testSellTicket;
 
-//5.GCD测试
-//5.1 串行+同步
-- (void)GCDSerialSyn;
-
-//5.2 串行+异步
-//创建新线程，依次按顺序打印
-- (void)GCDSerialAsyn;
-
-//5.3 并发+同步
-//不创建新线程，依次按顺序打印
-- (void)GCDConcurrentSyn;
-
-//5.4 并发+异步
-//创建新线程，不按顺序打印
-- (void)GCDConcurrentAsyn;
-
+////5.GCD测试
+////5.1 串行+同步
+//- (void)GCDSerialSyn;
+//
+////5.2 串行+异步
+////创建新线程，依次按顺序打印
+//- (void)GCDSerialAsyn;
+//
+////5.3 并发+同步
+////不创建新线程，依次按顺序打印
+//- (void)GCDConcurrentSyn;
+//
+////5.4 并发+异步
+////创建新线程，不按顺序打印
+//- (void)GCDConcurrentAsyn;
+//
 //6.利用系统队列，非手动创建队列
 
 //6.1 主队列的同步请求
@@ -61,6 +61,8 @@
 
 //8.3使用GCD场景3
 - (void)useGCD3;
+
+- (void)useGCD4;
 
 //9.中断
 - (void)barrierGCD;

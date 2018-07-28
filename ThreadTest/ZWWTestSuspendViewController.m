@@ -40,7 +40,7 @@
 
 - (void)downImage{
     [NSThread sleepForTimeInterval:1.0];
-    NSLog(@"下载图片1，当前线程==%@",[NSThread currentThread]);
+    ZWWLog(@"下载图片1，当前线程==%@",[NSThread currentThread]);
 }
 
 //暂停/继续

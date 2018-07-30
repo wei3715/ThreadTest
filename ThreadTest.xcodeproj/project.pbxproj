@@ -12,9 +12,9 @@
 		045A17C420B659EF00644DEC /* ZWWTestSuspendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045A17C220B659EF00644DEC /* ZWWTestSuspendViewController.xib */; };
 		045A17C820B661CF00644DEC /* ZWWUseNSOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045A17C620B661CF00644DEC /* ZWWUseNSOperationViewController.m */; };
 		045A17C920B661CF00644DEC /* ZWWUseNSOperationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045A17C720B661CF00644DEC /* ZWWUseNSOperationViewController.xib */; };
+		0470C072210EA6FB00457E75 /* ZWWGCDGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470C071210EA6FB00457E75 /* ZWWGCDGroupTableViewController.m */; };
+		0470C075210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470C074210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.m */; };
 		04E740832084459400D3EA47 /* ZWWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E740822084459400D3EA47 /* ZWWTableViewController.m */; };
-		04F69CA1210C1F61008E7165 /* ZWWGCDGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F69C9F210C1F61008E7165 /* ZWWGCDGroupViewController.m */; };
-		04F69CA2210C1F61008E7165 /* ZWWGCDGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F69CA0210C1F61008E7165 /* ZWWGCDGroupViewController.xib */; };
 		04F9A8572079DF8F0096D494 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9A8562079DF8F0096D494 /* AppDelegate.m */; };
 		04F9A85A2079DF8F0096D494 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9A8592079DF8F0096D494 /* FirstViewController.m */; };
 		04F9A85D2079DF8F0096D494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F9A85B2079DF8F0096D494 /* Main.storyboard */; };
@@ -51,13 +51,14 @@
 		045A17C520B661CF00644DEC /* ZWWUseNSOperationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWUseNSOperationViewController.h; sourceTree = "<group>"; };
 		045A17C620B661CF00644DEC /* ZWWUseNSOperationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWUseNSOperationViewController.m; sourceTree = "<group>"; };
 		045A17C720B661CF00644DEC /* ZWWUseNSOperationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZWWUseNSOperationViewController.xib; sourceTree = "<group>"; };
+		0470C070210EA6FB00457E75 /* ZWWGCDGroupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWGCDGroupTableViewController.h; sourceTree = "<group>"; };
+		0470C071210EA6FB00457E75 /* ZWWGCDGroupTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWGCDGroupTableViewController.m; sourceTree = "<group>"; };
+		0470C073210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZWWGCDGroupTableViewController+method.h"; sourceTree = "<group>"; };
+		0470C074210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ZWWGCDGroupTableViewController+method.m"; sourceTree = "<group>"; };
 		04E740812084459400D3EA47 /* ZWWTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWTableViewController.h; sourceTree = "<group>"; };
 		04E740822084459400D3EA47 /* ZWWTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWTableViewController.m; sourceTree = "<group>"; };
 		04F69C99210C1D31008E7165 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04F69C9A210C1D32008E7165 /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
-		04F69C9E210C1F61008E7165 /* ZWWGCDGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZWWGCDGroupViewController.h; sourceTree = "<group>"; };
-		04F69C9F210C1F61008E7165 /* ZWWGCDGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZWWGCDGroupViewController.m; sourceTree = "<group>"; };
-		04F69CA0210C1F61008E7165 /* ZWWGCDGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZWWGCDGroupViewController.xib; sourceTree = "<group>"; };
 		04F9A8522079DF8F0096D494 /* ThreadTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F9A8552079DF8F0096D494 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04F9A8562079DF8F0096D494 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -134,9 +135,10 @@
 				04E740822084459400D3EA47 /* ZWWTableViewController.m */,
 				0400232E207DD42700B1598E /* ZWWTableViewController+Method.h */,
 				0400232F207DD42700B1598E /* ZWWTableViewController+Method.m */,
-				04F69C9E210C1F61008E7165 /* ZWWGCDGroupViewController.h */,
-				04F69C9F210C1F61008E7165 /* ZWWGCDGroupViewController.m */,
-				04F69CA0210C1F61008E7165 /* ZWWGCDGroupViewController.xib */,
+				0470C070210EA6FB00457E75 /* ZWWGCDGroupTableViewController.h */,
+				0470C071210EA6FB00457E75 /* ZWWGCDGroupTableViewController.m */,
+				0470C073210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.h */,
+				0470C074210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.m */,
 				045A17C020B659EF00644DEC /* ZWWTestSuspendViewController.h */,
 				045A17C120B659EF00644DEC /* ZWWTestSuspendViewController.m */,
 				045A17C220B659EF00644DEC /* ZWWTestSuspendViewController.xib */,
@@ -276,7 +278,6 @@
 			files = (
 				04F9A8622079DF900096D494 /* LaunchScreen.storyboard in Resources */,
 				045A17C420B659EF00644DEC /* ZWWTestSuspendViewController.xib in Resources */,
-				04F69CA2210C1F61008E7165 /* ZWWGCDGroupViewController.xib in Resources */,
 				04F9A85F2079DF900096D494 /* Assets.xcassets in Resources */,
 				045A17C920B661CF00644DEC /* ZWWUseNSOperationViewController.xib in Resources */,
 				04F9A85D2079DF8F0096D494 /* Main.storyboard in Resources */,
@@ -304,13 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F69CA1210C1F61008E7165 /* ZWWGCDGroupViewController.m in Sources */,
 				04F9A85A2079DF8F0096D494 /* FirstViewController.m in Sources */,
+				0470C075210EAB6A00457E75 /* ZWWGCDGroupTableViewController+method.m in Sources */,
 				045A17C320B659EF00644DEC /* ZWWTestSuspendViewController.m in Sources */,
 				04002330207DD42700B1598E /* ZWWTableViewController+Method.m in Sources */,
 				04F9A8652079DF900096D494 /* main.m in Sources */,
 				04F9A8572079DF8F0096D494 /* AppDelegate.m in Sources */,
 				04E740832084459400D3EA47 /* ZWWTableViewController.m in Sources */,
+				0470C072210EA6FB00457E75 /* ZWWGCDGroupTableViewController.m in Sources */,
 				045A17C820B661CF00644DEC /* ZWWUseNSOperationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

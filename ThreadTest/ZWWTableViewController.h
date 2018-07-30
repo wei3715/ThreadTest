@@ -10,6 +10,5 @@
 
 @interface ZWWTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSOperationQueue *opQueue;
 
 @end

@@ -27,6 +27,16 @@ static dispatch_semaphore_t semaphoreLock;
         dispatch_sync(queue, ^{
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
             
+            //嵌套1
+//            dispatch_async(queue, ^{
+//                NSLog(@"当前打印值==%d，同步并行+嵌套+异步",i);
+//            });
+            
+            //嵌套2
+//            dispatch_sync(queue, ^{
+//                NSLog(@"当前打印值==%d，同步并行+嵌套+同步",i);
+//            });
+            
         });
     }
     NSLog(@"syncConcurrent end,当前线程==%@",[NSThread currentThread]);
@@ -46,6 +56,16 @@ static dispatch_semaphore_t semaphoreLock;
     for (int i = 0; i<5; i++) {
         dispatch_async(queue, ^{
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
+            
+            //嵌套1
+//            dispatch_async(queue, ^{
+//                NSLog(@"当前打印值==%d，异步并行+嵌套+异步",i);
+//            });
+            
+            //嵌套2
+//            dispatch_sync(queue, ^{
+//                NSLog(@"当前打印值==%d，异步并行+嵌套+同步",i);
+//            });
         });
     }
     
@@ -302,7 +322,9 @@ static dispatch_semaphore_t semaphoreLock;
 //等同于异步+并发，但是因为dispatch_apply函数会等待全部任务执行完毕，所以apply---end最后打印
 
 - (void)barrier{
+    //注意一定要使用自己创建的并发队列，如果使用全局并发队列会产生错误的结果
     dispatch_queue_t queue = dispatch_queue_create("zoe", DISPATCH_QUEUE_CONCURRENT);
+//    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
     NSLog(@"任务开始,当前线程==%@",[NSThread currentThread]);
     [NSThread sleepForTimeInterval:2.0];
     
@@ -347,16 +369,44 @@ static dispatch_semaphore_t semaphoreLock;
     NSLog(@"semaphore begin，当前线程==%@",[NSThread currentThread]);
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    //dispatch_semaphore_create参数是信号量值， 表示最多几个资源可访问，如果小于0则返回NULL
+    //由于设定的信号值为2，先执行两个线程，等执行完一个，才会继续执行下一个，保证同一时间执行的线程数不超过2。
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
     __block int number = 0;
+    
+    //追加任务可以用dispatch_async也可以用dispatch_sync
     dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         // 追加任务1
         [NSThread sleepForTimeInterval:2];
-        NSLog(@"当前线程==%@",[NSThread currentThread]);
+        NSLog(@"任务1，当前线程==%@",[NSThread currentThread]);
+        [NSThread sleepForTimeInterval:5];
         number = 100;
+        NSLog(@"任务1完成，当前线程==%@",[NSThread currentThread]);
         dispatch_semaphore_signal(semaphore);
     });
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        // 追加任务2
+        [NSThread sleepForTimeInterval:2];
+        NSLog(@"任务2，当前线程==%@",[NSThread currentThread]);
+        [NSThread sleepForTimeInterval:5];
+        number = 50;
+        NSLog(@"任务2完成，当前线程==%@",[NSThread currentThread]);
+        dispatch_semaphore_signal(semaphore);
+    });
+    
+    dispatch_async(queue, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        // 追加任务2
+        [NSThread sleepForTimeInterval:2];
+        NSLog(@"任务3，当前线程==%@",[NSThread currentThread]);
+        [NSThread sleepForTimeInterval:5];
+        number = 10;
+        NSLog(@"任务3完成，当前线程==%@",[NSThread currentThread]);
+        dispatch_semaphore_signal(semaphore);
+    });
     NSLog(@"semaphore---end,number = %d",number);
     
 }

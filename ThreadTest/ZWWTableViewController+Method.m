@@ -57,45 +57,4 @@ static int count = 100;
     //    ZWWLog(@"子线程中获取主线程名字==%@",[NSThread mainThread]);
 }
 
-//6.3 全局队列的异步请求
-- (void)testGlobalQueueASyn{
-    //GCD默认已经创建好了并发队列，不用手动创建
-    //全局队列（优先级队列）：是并发队列 第一个参数是优先级（2：高，0：默认，-2：低）
-    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_TARGET_QUEUE_DEFAULT, 0);
-    ZWWLog(@"任务开始");
-//    ZWWLog(@"当前线程begin==%@",[NSThread currentThread]);
-    for (int i = 0; i<5; i++) {
-        //异步任务：不要求立即执行
-        dispatch_async(globalQueue, ^{
-            ZWWLog(@"当前线程1==%@,打印值==%d",[NSThread currentThread],i);
-            
-            ZWWLog(@"当前线程2==%@,打印值==%d",[NSThread currentThread],i);
-        });
-    }
-//
-    ZWWLog(@"任务结束");
-//    ZWWLog(@"当前线程end==%@",[NSThread currentThread]);
-
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        ZWWLog(@"回到主线程==%@",[NSThread currentThread]);
-//    });
-//    __block long sum = 0;
-//    dispatch_async(globalQueue, ^{
-//        for (int i = 0; i<50000; i++) {
-//            ZWWLog(@"当前线程==%@，打印值==%ld",[NSThread currentThread],i);
-//            sum+=i;
-//        }
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            ZWWLog(@"sum==%ld",sum);
-//        });
-//    });
-    
-    
-}
-
-
-
-
-
 @end

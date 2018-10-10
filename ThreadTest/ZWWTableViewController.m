@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataArr = [[NSMutableArray alloc]initWithObjects:@"0.测试耗时操作阻塞主线程",@"1.测试NSThread多线程",@"2.测试创建多线程的多种方法",@"3.GCD使用（多种组合）",@"4.GCD的常见用法",@"5.测试线程间通信",@"6.NSOperation", nil];
+    _dataArr = [[NSMutableArray alloc]initWithObjects:@"0.测试耗时操作阻塞主线程",@"1.测试NSThread多线程",@"2.测试创建多线程的多种方法",@"3.GCD的多种组合&常见用法",@"4.测试线程间通信",@"6.NSOperation", nil];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"homeCellID"];
 }
@@ -65,21 +65,20 @@
             [self testCreateThreadMethod];
             break;
         }
-        case 3:
-        case 4:{//@"GCD使用（多种组合）及 @"GCD的常见用法"
+        case 3:{//@"GCD使用（多种组合）及 @"GCD的常见用法"
             ZWWGCDGroupTableViewController *GCDGroupVC = [[ZWWGCDGroupTableViewController alloc]init];
             [self.navigationController pushViewController:GCDGroupVC animated:YES];
             break;
         }
        
-        case 5:{//@"测试线程间通信"
+        case 4:{//@"测试线程间通信"
             UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             FirstViewController *firstVC = [story instantiateViewControllerWithIdentifier:@"FirstViewController"];
             [self.navigationController pushViewController:firstVC animated:YES];
             break;
         }
        
-        case 6:{//@"NSOperation"
+        case 5:{//@"NSOperation"
             ZWWNSOperationTableViewController *operationVC = [[ZWWNSOperationTableViewController alloc]init];
             [self.navigationController pushViewController:operationVC animated:YES];
             break;

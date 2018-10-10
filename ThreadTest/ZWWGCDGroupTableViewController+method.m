@@ -372,7 +372,7 @@ static dispatch_semaphore_t semaphoreLock;
     
     //dispatch_semaphore_create参数是信号量值， 表示最多几个资源可访问，如果小于0则返回NULL
     //由于设定的信号值为2，先执行两个线程，等执行完一个，才会继续执行下一个，保证同一时间执行的线程数不超过2。
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     __block int number = 0;
     
     //追加任务可以用dispatch_async也可以用dispatch_sync

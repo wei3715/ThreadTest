@@ -25,6 +25,9 @@ static dispatch_semaphore_t semaphoreLock;
     
     for (int i = 0; i<5; i++) {
         dispatch_sync(queue, ^{
+            if (i==1) {
+                [NSThread sleepForTimeInterval:10];
+            }
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
             
             //嵌套1
@@ -55,6 +58,9 @@ static dispatch_semaphore_t semaphoreLock;
     
     for (int i = 0; i<5; i++) {
         dispatch_async(queue, ^{
+            if (i==1) {
+                [NSThread sleepForTimeInterval:10];
+            }
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
             
             //嵌套1
@@ -85,7 +91,9 @@ static dispatch_semaphore_t semaphoreLock;
     for (int i = 0; i<5; i++) {
 
         dispatch_sync(queue, ^{
-            
+            if (i==1) {
+                [NSThread sleepForTimeInterval:10];
+            }
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
             //情况1
             // 下面开启同步造成死锁：因为串行队列中线程是有执行顺序的，需要等上面开启的同步任务执行完毕，才会执行下面开启的同步任务。而上面的同步任务还没执行完，要到下面的大括号才算执行完毕，而下面的同步任务已经在抢占资源了，就会发生死锁。
@@ -119,7 +127,9 @@ static dispatch_semaphore_t semaphoreLock;
     for (int i = 0; i<5; i++) {
         
         dispatch_async(queue, ^{
-    
+            if (i==1) {
+                [NSThread sleepForTimeInterval:10];
+            }
             NSLog(@"当前打印值==%d,线程==%@",i,[NSThread currentThread]);
 
             // 下面开启同步造成死锁：(串行队列中添加同步任务)因为串行队列中线程是有执行顺序的，需要等上面开启的异步任务执行完毕，才会执行下面开启的同步任务。而上面的异步任务还没执行完，要到下面的大括号才算执行完毕，而下面的同步任务已经在抢占资源了，就会发生死锁。

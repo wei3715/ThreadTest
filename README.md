@@ -13,7 +13,7 @@ ios三种多线程技术：
 (2)用block定义任务，使用起来非常灵活便捷
 (3)提供了更多的控制能力以及操作队列中所不能使用的底层函数
 
-下面重点了解GCD多线程
+下面重点了解GCD多线程,欢迎阅读CSDN：https://blog.csdn.net/wei371522/article/details/81258387，互相学习，进步~~
 GCD原型：函数（队列，任务）== dispatch_sync(queue, ^{});
 
 GCD中函数的概念：同步&异步：

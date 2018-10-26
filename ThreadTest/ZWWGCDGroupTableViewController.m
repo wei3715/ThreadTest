@@ -9,7 +9,7 @@
 //参考个人CSDN文档：https://blog.csdn.net/wei371522/article/details/81258387
 
 #import "ZWWGCDGroupTableViewController.h"
-
+#import <objc/message.h>
 @interface ZWWGCDGroupTableViewController ()
 
 @property (nonatomic, strong) NSArray *sectionArr;
@@ -79,9 +79,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //根据不同字符串执行对应方法
     SEL selector = NSSelectorFromString(_selectorNameArr[indexPath.section][indexPath.row]);
-    IMP imp = [self methodForSelector:selector];
-    void (*func)(id,SEL) = (void*)imp;
+    //IMP imp = [self methodForSelector:selector];
+    //void (*func)(id,SEL) = (void*)imp;
+    
+    void (*func)(id, SEL) = (void (*)(id, SEL)) objc_msgSend;
     func(self,selector);
 
 }

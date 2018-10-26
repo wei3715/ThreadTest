@@ -267,18 +267,18 @@ static dispatch_semaphore_t semaphoreLock;
         [NSThread sleepForTimeInterval:2.0];
         NSLog(@"下载图片1,当前线程==%@",[NSThread currentThread]);
     });
-    
+
     dispatch_group_async(group, queue, ^{
         [NSThread sleepForTimeInterval:1.0];
         NSLog(@"下载图片2,当前线程==%@",[NSThread currentThread]);
     });
-    
+
     dispatch_group_async(group, queue, ^{
         [NSThread sleepForTimeInterval:3.0];
         NSLog(@"下载图片3,当前线程==%@",[NSThread currentThread]);
     });
     
-    //回主线程刷新UI方法1：notify通知，所有异步请求完毕后会通知
+    //回主线程刷新UI方法1：notify通知，所有异步请求完毕后会通知，不会阻塞当前调用线程；会先打印任务结束，再执行block
 //    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
 //        NSLog(@"下载完毕更新UI,当前线程==%@",[NSThread currentThread]);
 //    });
@@ -313,9 +313,36 @@ static dispatch_semaphore_t semaphoreLock;
     //
     
     
-        //回主线程刷新UI方法2：wait 相当于阻塞
+        //回主线程刷新UI方法2：wait 相当于阻塞，会阻塞当前调用线程 “任务结束”会在最后面打印
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
         NSLog(@"下载完毕更新UI,当前线程==%@",[NSThread currentThread]);
+    
+    
+    
+//    dispatch_async(queue, ^{
+//        dispatch_group_enter(group);
+//        [NSThread sleepForTimeInterval:2.0];
+//        NSLog(@"下载图片1,当前线程==%@",[NSThread currentThread]);
+//        //离开队列
+//        dispatch_group_leave(group);
+//
+//        dispatch_group_enter(group);
+//        [NSThread sleepForTimeInterval:1.0];
+//        NSLog(@"下载图片2,当前线程==%@",[NSThread currentThread]);
+//        //离开队列
+//        dispatch_group_leave(group);
+//
+//        dispatch_group_enter(group);
+//        [NSThread sleepForTimeInterval:3.0];
+//        NSLog(@"下载图片3,当前线程==%@",[NSThread currentThread]);
+//        //离开队列
+//        dispatch_group_leave(group);
+//
+//        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+//        NSLog(@"下载完毕更新UI,当前线程==%@",[NSThread currentThread]);
+//    });
+//
+   
     
     NSLog(@"任务结束,当前线程==%@",[NSThread currentThread]);
 }
@@ -382,7 +409,7 @@ static dispatch_semaphore_t semaphoreLock;
     
     //dispatch_semaphore_create参数是信号量值， 表示最多几个资源可访问，如果小于0则返回NULL
     //由于设定的信号值为2，先执行两个线程，等执行完一个，才会继续执行下一个，保证同一时间执行的线程数不超过2。
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
     __block int number = 0;
     
     //追加任务可以用dispatch_async也可以用dispatch_sync
@@ -391,7 +418,7 @@ static dispatch_semaphore_t semaphoreLock;
         // 追加任务1
         [NSThread sleepForTimeInterval:2];
         NSLog(@"任务1，当前线程==%@",[NSThread currentThread]);
-        [NSThread sleepForTimeInterval:5];
+        [NSThread sleepForTimeInterval:25];
         number = 100;
         NSLog(@"任务1完成，当前线程==%@",[NSThread currentThread]);
         dispatch_semaphore_signal(semaphore);
